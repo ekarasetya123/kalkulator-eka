@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Aritmatika{% endblock %}
+
+{% block content %}
+<div style="margin-bottom:32px;">
+  <a href="/" style="font-size:13px;font-weight:600;color:var(--mute);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:16px;">
+    <i class="fas fa-arrow-left" style="font-size:11px;"></i> Dashboard
+  </a>
+  <h1 style="font-size:40px;font-weight:900;color:var(--ink);letter-spacing:-1px;line-height:1;">Aritmatika</h1>
+  <p style="font-size:16px;color:var(--body);margin-top:8px;">Operasi matematika dasar hingga lanjutan</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;">
+
+  <!-- KIRI: KALKULATOR -->
+  <div>
+
+    <!-- OPERATOR BUTTONS -->
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">PILIH OPERASI</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="op-btn active" onclick="pilihOperasi(this,'tambah')" data-operasi="tambah">➕ Tambah</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'kurang')" data-operasi="kurang">➖ Kurang</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'kali')" data-operasi="kali">✖️ Kali</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'bagi')" data-operasi="bagi">➗ Bagi</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'pangkat')" data-operasi="pangkat">⬆️ Pangkat</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'akar')" data-operasi="akar">√ Akar</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'modulus')" data-operasi="modulus">% Modulus</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'floor_division')" data-operasi="floor_division">// Floor Div</button>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">INPUT</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" id="inputGrid">
+        <div>
+          <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Angka A</label>
+          <input type="number" id="inputA" class="input-wise" placeholder="Masukkan angka..." value="0"/>
+        </div>
+        <div id="inputBWrapper">
+          <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Angka B</label>
+          <input type="number" id="inputB" class="input-wise" placeholder="Masukkan angka..." value="0"/>
+        </div>
+      </div>
+
+      <button onclick="hitung()" class="btn-wise-primary" style="width:100%;justify-content:center;font-size:16px;padding:14px 24px;">
+        <i class="fas fa-equals"></i> Hitung Sekarang
+      </button>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result"></div>
+
+  </div>
+
+  <!-- KANAN: HISTORY -->
+  <div style="position:sticky;top:80px;">
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:24px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-clock" style="color:var(--primary);"></i> Riwayat
+        </div>
+        <button onclick="clearHistory('aritmatika')"
+          style="font-size:11px;font-weight:600;color:var(--mute);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:var(--radius-sm);">
+          Hapus
+        </button>
+      </div>
+      <div id="historyList"></div>
+    </div>
+
+    <!-- INFO OPERASI -->
+    <div style="background:var(--canvas-soft);border-radius:var(--radius-xl);padding:20px;margin-top:16px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:12px;">INFO OPERASI</div>
+      <div id="infoOperasi" style="font-size:13px;color:var(--body);line-height:1.5;">
+        Pilih operasi dan masukkan angka untuk mulai menghitung.
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/aritmatika.js') }}"></script>
+{% endblock %}
