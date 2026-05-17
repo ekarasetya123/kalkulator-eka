@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Logika{% endblock %}
+
+{% block content %}
+<div style="margin-bottom:32px;">
+  <a href="/" style="font-size:13px;font-weight:600;color:var(--mute);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:16px;">
+    <i class="fas fa-arrow-left" style="font-size:11px;"></i> Dashboard
+  </a>
+  <h1 style="font-size:40px;font-weight:900;color:var(--ink);letter-spacing:-1px;line-height:1;">Operator Logika</h1>
+  <p style="font-size:16px;color:var(--body);margin-top:8px;">Operasi boolean dan gerbang logika</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;">
+
+  <!-- KIRI -->
+  <div>
+
+    <!-- OPERATOR BUTTONS -->
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">PILIH OPERATOR</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="op-btn active" onclick="pilihOperasi(this,'and')">AND</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'or')">OR</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'not')">NOT</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'xor')">XOR</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'nand')">NAND</button>
+        <button class="op-btn" onclick="pilihOperasi(this,'nor')">NOR</button>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">INPUT BOOLEAN</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;" id="inputGrid">
+
+        <div>
+          <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:8px;">Nilai A</label>
+          <div style="display:flex;gap:8px;">
+            <button onclick="setNilai('a', true, this)" id="btnA_true"
+              class="btn-wise-primary" style="flex:1;justify-content:center;padding:12px;">
+              TRUE
+            </button>
+            <button onclick="setNilai('a', false, this)" id="btnA_false"
+              class="btn-wise-secondary" style="flex:1;justify-content:center;padding:12px;">
+              FALSE
+            </button>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:var(--positive-deep);margin-top:8px;text-align:center;" id="labelA">
+            A = TRUE
+          </div>
+        </div>
+
+        <div id="inputBWrapper">
+          <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:8px;">Nilai B</label>
+          <div style="display:flex;gap:8px;">
+            <button onclick="setNilai('b', true, this)" id="btnB_true"
+              class="btn-wise-primary" style="flex:1;justify-content:center;padding:12px;">
+              TRUE
+            </button>
+            <button onclick="setNilai('b', false, this)" id="btnB_false"
+              class="btn-wise-secondary" style="flex:1;justify-content:center;padding:12px;">
+              FALSE
+            </button>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:var(--positive-deep);margin-top:8px;text-align:center;" id="labelB">
+            B = TRUE
+          </div>
+        </div>
+
+      </div>
+
+      <button onclick="hitung()" class="btn-wise-primary" style="width:100%;justify-content:center;font-size:16px;padding:14px 24px;">
+        <i class="fas fa-code-branch"></i> Hitung Logika
+      </button>
+    </div>
+
+    <!-- TABEL KEBENARAN -->
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">TABEL KEBENARAN</div>
+      <div id="tabelKebenaran" style="overflow-x:auto;"></div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result"></div>
+
+  </div>
+
+  <!-- KANAN: HISTORY + INFO -->
+  <div style="position:sticky;top:80px;">
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:24px;margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-clock" style="color:var(--primary);"></i> Riwayat
+        </div>
+        <button onclick="clearHistory('logika')"
+          style="font-size:11px;font-weight:600;color:var(--mute);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:var(--radius-sm);">
+          Hapus
+        </button>
+      </div>
+      <div id="historyList"></div>
+    </div>
+
+    <div style="background:var(--canvas-soft);border-radius:var(--radius-xl);padding:20px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:12px;">INFO OPERATOR</div>
+      <div id="infoOperasi" style="font-size:13px;color:var(--body);line-height:1.6;"></div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/logika.js') }}"></script>
+{% endblock %}
