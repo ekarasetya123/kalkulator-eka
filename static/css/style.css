@@ -398,3 +398,50 @@ body {
   .hero-band { padding: 40px 24px; }
   .section-title { font-size: 28px; }
 }
+
+/* ── RESPONSIVE FIXES ── */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-band {
+    padding: 40px 24px !important;
+  }
+  .hero-band h1 {
+    font-size: 52px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-band h1 {
+    font-size: 40px !important;
+    letter-spacing: -1px !important;
+  }
+  .section-title {
+    font-size: 28px !important;
+  }
+  /* Grid 2 kolom jadi 1 kolom di mobile */
+  [style*="grid-template-columns:1fr 340px"] {
+    display: block !important;
+  }
+  [style*="grid-template-columns:1fr 340px"] > div:last-child {
+    position: static !important;
+    margin-top: 16px;
+  }
+  /* Stats grid */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Tab transformasi */
+  .tab-btn {
+    font-size: 11px !important;
+    padding: 8px 8px !important;
+  }
+  /* Input grid */
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  [style*="grid-template-columns:1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
