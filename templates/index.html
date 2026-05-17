@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<!-- HERO BAND -->
+<div class="hero-band">
+  <div style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;flex-wrap:wrap;">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--primary);border-radius:var(--radius-pill);padding:4px 14px;margin-bottom:24px;">
+        <span style="width:6px;height:6px;background:var(--on-primary);border-radius:50%;display:inline-block;opacity:0.7;"></span>
+        <span style="font-size:12px;font-weight:600;color:var(--on-primary);">Pengantar Pemrograman 2025/2026</span>
+      </div>
+      <h1 style="font-size:clamp(48px,7vw,96px);font-weight:900;line-height:0.9;letter-spacing:-2px;color:var(--ink);margin-bottom:20px;">
+        Kalkulator<br/>Canggih.
+      </h1>
+      <p style="font-size:18px;font-weight:400;line-height:1.5;color:var(--body);margin-bottom:32px;max-width:400px;">
+        Aritmatika · Logika · Transformasi.<br/>
+        Lengkap dengan rumus dan langkah penyelesaian.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/aritmatika" class="btn-wise-primary">
+          <i class="fas fa-calculator"></i> Mulai Hitung
+        </a>
+        <a href="/transformasi" class="btn-wise-secondary">
+          <i class="fas fa-exchange-alt"></i> Konversi
+        </a>
+      </div>
+    </div>
+
+    <!-- Stat Card (signature currency-converter-style) -->
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;border:1px solid var(--ink);min-width:220px;">
+      <div style="font-size:11px;font-weight:600;color:var(--mute);letter-spacing:0.5px;margin-bottom:16px;">FITUR TERSEDIA</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--canvas-soft);">
+          <span style="font-size:14px;font-weight:600;color:var(--ink);">Aritmatika</span>
+          <span style="font-size:20px;font-weight:900;color:var(--ink);">8</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--canvas-soft);">
+          <span style="font-size:14px;font-weight:600;color:var(--ink);">Logika</span>
+          <span style="font-size:20px;font-weight:900;color:var(--ink);">6</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:14px;font-weight:600;color:var(--ink);">Transformasi</span>
+          <span style="font-size:20px;font-weight:900;color:var(--ink);">5+</span>
+        </div>
+      </div>
+      <a href="/aritmatika" class="btn-wise-primary" style="width:100%;justify-content:center;margin-top:20px;">
+        Mulai <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION TITLE -->
+<h2 class="section-title">Pilih Kategori</h2>
+
+<!-- FEATURE CARDS -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:48px;">
+
+  <!-- Aritmatika -->
+  <a href="/aritmatika" style="text-decoration:none;" class="card-wise">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      <div style="width:52px;height:52px;background:var(--primary);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">➕</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:var(--ink);letter-spacing:-0.5px;">Aritmatika</div>
+        <div style="font-size:13px;color:var(--mute);">8 operasi tersedia</div>
+      </div>
+    </div>
+    <p style="font-size:14px;font-weight:400;color:var(--body);line-height:1.55;margin-bottom:20px;">
+      Operasi matematika dasar hingga lanjutan dengan penjelasan langkah demi langkah.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">
+      {% for op in ['+', '−', '×', '÷', 'pangkat', 'akar', 'mod', '//'] %}
+      <span class="badge-wise badge-sage" style="font-size:12px;border-radius:var(--radius-sm);">{{op}}</span>
+      {% endfor %}
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;color:var(--positive-deep);font-size:14px;font-weight:600;">
+      Buka <i class="fas fa-arrow-right" style="font-size:12px;"></i>
+    </div>
+  </a>
+
+  <!-- Logika -->
+  <a href="/logika" style="text-decoration:none;" class="card-wise-dark">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      <div style="width:52px;height:52px;background:var(--primary);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🔀</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;letter-spacing:-0.5px;">Operator Logika</div>
+        <div style="font-size:13px;color:var(--primary-neutral);">6 operator tersedia</div>
+      </div>
+    </div>
+    <p style="font-size:14px;font-weight:400;color:var(--primary-neutral);line-height:1.55;margin-bottom:20px;">
+      Operasi boolean dan gerbang logika dengan tabel kebenaran lengkap.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">
+      {% for op in ['AND','OR','NOT','XOR','NAND','NOR'] %}
+      <span class="badge-wise badge-green" style="font-size:12px;border-radius:var(--radius-sm);">{{op}}</span>
+      {% endfor %}
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;">
+      Buka <i class="fas fa-arrow-right" style="font-size:12px;"></i>
+    </div>
+  </a>
+
+  <!-- Transformasi -->
+  <a href="/transformasi" style="text-decoration:none;" class="card-wise-sage">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      <div style="width:52px;height:52px;background:var(--ink);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🔄</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:var(--ink);letter-spacing:-0.5px;">Transformasi</div>
+        <div style="font-size:13px;color:var(--mute);">5 kategori tersedia</div>
+      </div>
+    </div>
+    <p style="font-size:14px;font-weight:400;color:var(--body);line-height:1.55;margin-bottom:20px;">
+      Konversi basis bilangan, suhu, mata uang, faktorial, dan fibonacci.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">
+      {% for op in ['Basis','Suhu','Mata Uang','Faktorial','Fibonacci'] %}
+      <span class="badge-wise badge-dark" style="font-size:12px;border-radius:var(--radius-sm);">{{op}}</span>
+      {% endfor %}
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;color:var(--positive-deep);font-size:14px;font-weight:600;">
+      Buka <i class="fas fa-arrow-right" style="font-size:12px;"></i>
+    </div>
+  </a>
+
+</div>
+
+<!-- CTA DARK BAND -->
+<div class="hero-band-dark" style="text-align:center;">
+  <h2 style="font-size:40px;font-weight:900;letter-spacing:-1px;margin-bottom:12px;">
+    Siap mulai menghitung?
+  </h2>
+  <p style="font-size:16px;color:var(--primary-neutral);margin-bottom:28px;">
+    Pilih kategori dan eksplorasi semua fitur kalkulator canggih ini.
+  </p>
+  <a href="/aritmatika" class="btn-wise-primary">
+    <i class="fas fa-calculator"></i> Mulai Sekarang
+  </a>
+</div>
+
+{% endblock %}
