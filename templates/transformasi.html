@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% block title %}Transformasi{% endblock %}
+
+{% block content %}
+<div style="margin-bottom:32px;">
+  <a href="/" style="font-size:13px;font-weight:600;color:var(--mute);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:16px;">
+    <i class="fas fa-arrow-left" style="font-size:11px;"></i> Dashboard
+  </a>
+  <h1 style="font-size:40px;font-weight:900;color:var(--ink);letter-spacing:-1px;line-height:1;">Transformasi</h1>
+  <p style="font-size:16px;color:var(--body);margin-top:8px;">Konversi bilangan, suhu, mata uang, faktorial & fibonacci</p>
+</div>
+
+<!-- TAB NAVIGASI -->
+<div style="display:flex;gap:4px;background:var(--canvas);border-radius:var(--radius-xl);padding:6px;margin-bottom:24px;overflow-x:auto;">
+  <button class="tab-btn active" onclick="gantiTab(this,'basis')" style="flex:1;">
+    <i class="fas fa-hashtag" style="font-size:11px;"></i> Basis
+  </button>
+  <button class="tab-btn" onclick="gantiTab(this,'suhu')" style="flex:1;">
+    <i class="fas fa-thermometer-half" style="font-size:11px;"></i> Suhu
+  </button>
+  <button class="tab-btn" onclick="gantiTab(this,'matauang')" style="flex:1;">
+    <i class="fas fa-money-bill" style="font-size:11px;"></i> Mata Uang
+  </button>
+  <button class="tab-btn" onclick="gantiTab(this,'faktorial')" style="flex:1;">
+    <i class="fas fa-exclamation" style="font-size:11px;"></i> Faktorial
+  </button>
+  <button class="tab-btn" onclick="gantiTab(this,'fibonacci')" style="flex:1;">
+    <i class="fas fa-infinity" style="font-size:11px;"></i> Fibonacci
+  </button>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;">
+
+  <!-- KIRI: KONTEN TAB -->
+  <div>
+
+    <!-- TAB: BASIS -->
+    <div id="tab-basis" class="tab-content">
+      <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">KONVERSI BASIS BILANGAN</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Angka Input</label>
+            <input type="text" id="basisInput" class="input-wise" placeholder="Contoh: 255"/>
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Dari Basis</label>
+            <select id="basisDari" class="select-wise">
+              <option value="10">Decimal (10)</option>
+              <option value="2">Binary (2)</option>
+              <option value="8">Octal (8)</option>
+              <option value="16">Hexadecimal (16)</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Ke Basis</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="op-btn active" onclick="pilihBasisKe(this,2)">Binary (2)</button>
+            <button class="op-btn" onclick="pilihBasisKe(this,8)">Octal (8)</button>
+            <button class="op-btn" onclick="pilihBasisKe(this,10)">Decimal (10)</button>
+            <button class="op-btn" onclick="pilihBasisKe(this,16)">Hex (16)</button>
+          </div>
+        </div>
+        <button onclick="hitungBasis()" class="btn-wise-primary" style="width:100%;justify-content:center;padding:14px;">
+          <i class="fas fa-exchange-alt"></i> Konversi Basis
+        </button>
+      </div>
+      <div id="result"></div>
+    </div>
+
+    <!-- TAB: SUHU -->
+    <div id="tab-suhu" class="tab-content" style="display:none;">
+      <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">KONVERSI SUHU</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Nilai Suhu</label>
+            <input type="number" id="suhuInput" class="input-wise" placeholder="Contoh: 100"/>
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Dari</label>
+            <select id="suhuDari" class="select-wise">
+              <option value="celsius">Celsius (°C)</option>
+              <option value="fahrenheit">Fahrenheit (°F)</option>
+              <option value="kelvin">Kelvin (K)</option>
+              <option value="reamur">Réaumur (°R)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Ke</label>
+            <select id="suhuKe" class="select-wise">
+              <option value="fahrenheit">Fahrenheit (°F)</option>
+              <option value="celsius">Celsius (°C)</option>
+              <option value="kelvin">Kelvin (K)</option>
+              <option value="reamur">Réaumur (°R)</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="hitungSuhu()" class="btn-wise-primary" style="width:100%;justify-content:center;padding:14px;">
+          <i class="fas fa-thermometer-half"></i> Konversi Suhu
+        </button>
+      </div>
+      <div id="result-suhu"></div>
+    </div>
+
+    <!-- TAB: MATA UANG -->
+    <div id="tab-matauang" class="tab-content" style="display:none;">
+      <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:8px;">KONVERSI MATA UANG</div>
+        <div style="background:var(--canvas-soft);border-radius:var(--radius-lg);padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-info-circle" style="color:var(--mute);font-size:13px;"></i>
+          <span style="font-size:12px;color:var(--mute);">Rate statis — bukan real-time</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Jumlah (IDR)</label>
+            <input type="number" id="uangInput" class="input-wise" placeholder="Contoh: 1000000"/>
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Ke Mata Uang</label>
+            <select id="uangKe" class="select-wise">
+              <option value="USD">USD — Dolar Amerika</option>
+              <option value="EUR">EUR — Euro</option>
+              <option value="SGD">SGD — Dolar Singapura</option>
+              <option value="MYR">MYR — Ringgit Malaysia</option>
+              <option value="JPY">JPY — Yen Jepang</option>
+              <option value="GBP">GBP — Poundsterling</option>
+              <option value="AUD">AUD — Dolar Australia</option>
+              <option value="SAR">SAR — Riyal Arab Saudi</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="hitungUang()" class="btn-wise-primary" style="width:100%;justify-content:center;padding:14px;">
+          <i class="fas fa-money-bill-wave"></i> Konversi Mata Uang
+        </button>
+      </div>
+      <div id="result-uang"></div>
+    </div>
+
+    <!-- TAB: FAKTORIAL -->
+    <div id="tab-faktorial" class="tab-content" style="display:none;">
+      <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">FAKTORIAL</div>
+        <div style="margin-bottom:16px;">
+          <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Nilai N (0–20)</label>
+          <input type="number" id="faktorialInput" class="input-wise" placeholder="Contoh: 5" min="0" max="20"/>
+        </div>
+        <button onclick="hitungFaktorial()" class="btn-wise-primary" style="width:100%;justify-content:center;padding:14px;">
+          <i class="fas fa-exclamation"></i> Hitung Faktorial
+        </button>
+      </div>
+      <div id="result-faktorial"></div>
+    </div>
+
+    <!-- TAB: FIBONACCI -->
+    <div id="tab-fibonacci" class="tab-content" style="display:none;">
+      <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">DERET FIBONACCI</div>
+        <div style="margin-bottom:16px;">
+          <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Jumlah Suku (1–30)</label>
+          <input type="number" id="fibonacciInput" class="input-wise" placeholder="Contoh: 10" min="1" max="30"/>
+        </div>
+        <button onclick="hitungFibonacci()" class="btn-wise-primary" style="width:100%;justify-content:center;padding:14px;">
+          <i class="fas fa-infinity"></i> Hitung Fibonacci
+        </button>
+      </div>
+      <div id="result-fibonacci"></div>
+    </div>
+
+  </div>
+
+  <!-- KANAN: HISTORY -->
+  <div style="position:sticky;top:80px;">
+    <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:24px;margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-clock" style="color:var(--primary);"></i> Riwayat
+        </div>
+        <button onclick="clearHistory('transformasi')"
+          style="font-size:11px;font-weight:600;color:var(--mute);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:var(--radius-sm);">
+          Hapus
+        </button>
+      </div>
+      <div id="historyList"></div>
+    </div>
+
+    <!-- REFERENSI SUHU -->
+    <div style="background:var(--canvas-soft);border-radius:var(--radius-xl);padding:20px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:12px;">REFERENSI CEPAT</div>
+      <div style="font-size:12px;color:var(--body);line-height:1.8;font-family:'JetBrains Mono',monospace;">
+        0°C = 32°F = 273.15K<br/>
+        100°C = 212°F = 373.15K<br/>
+        1 USD ≈ Rp 16,100<br/>
+        1 EUR ≈ Rp 17,500<br/>
+        1 SGD ≈ Rp 12,000
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/transformasi.js') }}"></script>
+{% endblock %}
