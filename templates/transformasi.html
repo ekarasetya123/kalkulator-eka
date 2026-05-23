@@ -11,7 +11,7 @@
 </div>
 
 <!-- TAB NAVIGASI -->
-<div style="display:flex;gap:4px;background:var(--canvas);border-radius:var(--radius-xl);padding:6px;margin-bottom:24px;overflow-x:auto;">
+<div class="tab-bar" style="display:flex;gap:4px;background:var(--canvas);border-radius:var(--radius-xl);padding:6px;margin-bottom:24px;overflow-x:auto;">
   <button class="tab-btn active" onclick="gantiTab(this,'basis')" style="flex:1;">
     <i class="fas fa-hashtag" style="font-size:11px;"></i> Basis
   </button>
@@ -29,7 +29,7 @@
   </button>
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;">
+<div class="calc-layout" style="display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;">
 
   <!-- KIRI: KONTEN TAB -->
   <div>
@@ -38,7 +38,7 @@
     <div id="tab-basis" class="tab-content">
       <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
         <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">KONVERSI BASIS BILANGAN</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <div class="input-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
           <div>
             <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Angka Input</label>
             <input type="text" id="basisInput" class="input-wise" placeholder="Contoh: 255"/>
@@ -73,7 +73,7 @@
     <div id="tab-suhu" class="tab-content" style="display:none;">
       <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:28px;margin-bottom:20px;">
         <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:16px;">KONVERSI SUHU</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+        <div class="input-grid-3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
           <div>
             <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Nilai Suhu</label>
             <input type="number" id="suhuInput" class="input-wise" placeholder="Contoh: 100"/>
@@ -112,7 +112,7 @@
           <i class="fas fa-info-circle" style="color:var(--mute);font-size:13px;"></i>
           <span style="font-size:12px;color:var(--mute);">Rate statis — bukan real-time</span>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <div class="input-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
           <div>
             <label style="font-size:13px;font-weight:600;color:var(--body);display:block;margin-bottom:6px;">Jumlah (IDR)</label>
             <input type="number" id="uangInput" class="input-wise" placeholder="Contoh: 1000000"/>
@@ -171,7 +171,7 @@
   </div>
 
   <!-- KANAN: HISTORY -->
-  <div style="position:sticky;top:80px;">
+  <div class="calc-sidebar" style="position:sticky;top:80px;">
     <div style="background:var(--canvas);border-radius:var(--radius-xl);padding:24px;margin-bottom:16px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
         <div style="font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;">
@@ -185,7 +185,7 @@
       <div id="historyList"></div>
     </div>
 
-    <!-- REFERENSI SUHU -->
+    <!-- REFERENSI CEPAT -->
     <div style="background:var(--canvas-soft);border-radius:var(--radius-xl);padding:20px;">
       <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--mute);margin-bottom:12px;">REFERENSI CEPAT</div>
       <div style="font-size:12px;color:var(--body);line-height:1.8;font-family:'JetBrains Mono',monospace;">
